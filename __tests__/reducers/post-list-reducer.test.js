@@ -14,5 +14,19 @@ describe("Post List reducer", () => {
     action = { type: null };
     expect(postList([], action)).toEqual([]);
   });
-  
+
+  test("should add ticket to list array", () => {
+    const { title, author, content, id, timePosted, likeCount } = postInfo;
+    action = {
+      type: constants.ADD_POST,
+      title: title,
+      author: author,
+      content: content,
+      id: id,
+      timePosted: timePosted,
+      likeCount: likeCount
+    };
+    const futureState = [ postInfo ];
+    expect(postList([], action)).toEqual([ postInfo ])
+  })
 });

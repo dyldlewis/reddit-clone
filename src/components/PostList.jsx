@@ -17,14 +17,16 @@ function PostList(props) {
       {props.postList.map((post, index) =>
       <Post
       post={post}
-      key={post.id}/>
+      key={post.id}
+      handleNewLike={props.handleNewLike}/>
       )}
     </div>
   )
 }
 
 PostList.propTypes = {
-  postList: PropTypes.array
+  postList: PropTypes.array,
+  handleNewLike: PropTypes.func
 };
 
 export default PostList;

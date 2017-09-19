@@ -4,6 +4,7 @@ import { v4 } from "uuid";
 import constants from "./../constants";
 import { connect } from "react-redux";
 import { Button } from "react-bootstrap";
+import Moment from "moment";
 
 
 
@@ -11,6 +12,7 @@ class BlogInput extends React.Component {
   constructor(props) {
     super(props)
     this.handleNewBlogFormSubmission = this.handleNewBlogFormSubmission.bind(this);
+    this.handleNewLike = this.handleNewLike.bind(this);
   }
 
   handleNewBlogFormSubmission(event) {
@@ -22,10 +24,21 @@ class BlogInput extends React.Component {
       id: v4(),
       title: _title.value,
       author: _author.value,
-      content: _content.value
+      content: _content.value,
+      timePosted: new Moment().format('MM/DD/YYYY'),
+      likeCount: 0
     }
     dispatch(action);
   }
+
+  handleNewLike(post) {
+    for (var i = 0; i < this.props.masterPostList.length; i++) {
+      if (post.id === this.props.masterPostList[i].id) {
+        console.log("hello");
+      }
+    }
+  }
+
 
   render() {
 
@@ -64,7 +77,8 @@ class BlogInput extends React.Component {
           <br/>
           <Button bsStyle="warning" type="submit">Post</Button>
         </form>
-        <PostList postList={this.props.masterPostList}/>
+        <PostList postList={this.props.masterPostList}
+                  handleNewLike={this.handleNewLike}/>
       </div>
     )
   }
