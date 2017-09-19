@@ -5,7 +5,9 @@ import Post from "./Post";
 
 
 
+
 function PostList(props) {
+  console.log(props);
   var showList;
   if (props.postList.length > 0) {
     showList = <h1>Top Reddit Posts</h1>;
@@ -14,19 +16,19 @@ function PostList(props) {
   return (
     <div>
       {showList}
-      {props.postList.map((post, index) =>
+      {props.postList.map((post) =>
       <Post
       post={post}
       key={post.id}
-      handleNewLike={props.handleNewLike}/>
+      postList={props.postList}
+      />
       )}
     </div>
   )
 }
 
 PostList.propTypes = {
-  postList: PropTypes.array,
-  handleNewLike: PropTypes.func
+  postList: PropTypes.array
 };
 
 export default PostList;

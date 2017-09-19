@@ -12,7 +12,6 @@ class BlogInput extends React.Component {
   constructor(props) {
     super(props)
     this.handleNewBlogFormSubmission = this.handleNewBlogFormSubmission.bind(this);
-    this.handleNewLike = this.handleNewLike.bind(this);
   }
 
   handleNewBlogFormSubmission(event) {
@@ -29,16 +28,10 @@ class BlogInput extends React.Component {
       likeCount: 0
     }
     dispatch(action);
+    _title.value = "",
+    _author.value ="",
+    _content.value = ""
   }
-
-  handleNewLike(post) {
-    for (var i = 0; i < this.props.masterPostList.length; i++) {
-      if (post.id === this.props.masterPostList[i].id) {
-        console.log("hello");
-      }
-    }
-  }
-
 
   render() {
 
@@ -77,8 +70,7 @@ class BlogInput extends React.Component {
           <br/>
           <Button bsStyle="warning" type="submit">Post</Button>
         </form>
-        <PostList postList={this.props.masterPostList}
-                  handleNewLike={this.handleNewLike}/>
+        <PostList postList={this.props.masterPostList}/>
       </div>
     )
   }

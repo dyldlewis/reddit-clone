@@ -13,8 +13,14 @@ export default (state = [], action ) => {
           likeCount: likeCount
         }
       ];
-    // case "LIKE_POST":
-    //   const { likeCount, id }
+    case "LIKE_POST":
+    var newState = state.slice();
+    for (var i = 0; i < newState.length; i++) {
+      if (action.id === newState[i].id) {
+        newState[i].likeCount += 1;
+      }
+    }
+    return newState;
     default:
       return state;
   }
